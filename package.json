@@ -4,7 +4,7 @@
     "description": "",
     "scripts": {},
     "dependencies": {
-        "sequelize": "^4.32.1"
+        "sequelize": "^6.6.2"
     },
     "devDependencies": {
         "@tsconfig/node14": "^1.0.0",

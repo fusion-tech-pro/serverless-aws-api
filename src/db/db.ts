@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+import { Dialect, Sequelize } from 'sequelize';
 
 const db_mode = process.env.NODE_ENV as DbModeType || 'development';
 import envConfig from './env';
@@ -9,11 +9,10 @@ const sequelize = new Sequelize(env.database, env.username, env.password, {
     host: env.host,
     port: env.port,
     logging: true, // Disable the logging. It is consuming the time on lambda function.
-    dialect: env.dialect,
+    dialect: env.dialect as Dialect,
     define: {
         timestamps: false
     },
-    operatorsAliases: false,
     pool: {
         max: 5,
         min: 0,
