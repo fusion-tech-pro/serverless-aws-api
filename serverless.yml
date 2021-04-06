@@ -1,0 +1,73 @@
+service: rds-rest-api
+
+package:
+  exclude:
+    - lib/**
+    - data-local
+    - node_modeules
+  include:
+    - src
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-west-2
+  timeout: 20
+  versionFunctions: false
+  memorySize: 512
+  environment:
+    NODE_ENV: development
+
+functions:
+
+  create:
+    handler: src/routes/create.create
+    events:
+      - http:
+          path: client
+          method: post
+
+  list:
+    handler: src/routes/list.list
+    events:
+      - http:
+          path: client
+          method: get
+          request:
+            parameters:
+              querystrings:
+                limit: false
+                offset: false
+
+  get:
+    handler: src/routes/get.get
+    events:
+      - http:
+          path: client/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+
+  update:
+    handler: src/routes/update.update
+    events:
+      - http:
+          path: client/{id}
+          method: put
+          request:
+            parameters:
+              paths:
+                id: true      
+
+  delete:
+    handler: src/routes/delete.deleteClient
+    events:
+      - http:
+          path: client/{id}
+          method: delete
+          request:
+            parameters:
+              paths:
+                id: true
