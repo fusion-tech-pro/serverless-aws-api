@@ -1,7 +1,7 @@
 import { Dialect, Sequelize } from 'sequelize';
 
 const db_mode = process.env.NODE_ENV as DbModeType || 'development';
-import envConfig from './env';
+import envConfig from './env.json';
 
 const env = envConfig[db_mode];
 

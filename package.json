@@ -4,10 +4,13 @@
   "description": "",
   "scripts": {
     "build": "node_modules/typescript/bin/tsc",
-    "deploy": "npm run build && serverless deploy -v"
+    "deploy": "npm run build && serverless deploy -v",
+    "migrate": "sequelize db:migrate"
   },
   "dependencies": {
-    "sequelize": "^6.6.2"
+    "pg": "^8.5.1",
+    "sequelize": "^6.6.2",
+    "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.0",

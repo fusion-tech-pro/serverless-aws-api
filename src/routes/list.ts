@@ -4,6 +4,6 @@ import { APIGatewayEventRequestContext, APIGatewayProxyEvent, APIGatewayProxyHan
 
 let db = require('./config/db.js');
 
-exports.list = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext, callback) => {
+exports.list = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) => {
     
 };
