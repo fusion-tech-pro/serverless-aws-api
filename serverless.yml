@@ -2,11 +2,7 @@ service: rds-rest-api
 
 package:
   exclude:
-    - lib/**
-    - data-local
     - node_modeules
-  include:
-    - src
 
 provider:
   name: aws
@@ -20,8 +16,8 @@ provider:
 
 functions:
 
-  create:
-    handler: src/routes/create.create
+  post:
+    handler: build/routes/create.post
     events:
       - http:
           path: client

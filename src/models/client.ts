@@ -6,18 +6,17 @@ import {
 } from 'sequelize';
 
 type ClientAttributes = {
-  id: number;
+  id?: number;
   name: string;
   address: string;
   contact_number: string;
   admin_email: string;
-  age: string;
+  age?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
 
 interface ClientModel extends Model<ClientAttributes>, ClientAttributes {}
-class Client extends Model<ClientModel, ClientAttributes> {}
 
 type ClientStatic = typeof Model & {
   new (values?: object, options?: BuildOptions): ClientModel;
@@ -28,11 +27,15 @@ export const ClientFactory = function (sequelize: Sequelize): ClientStatic {
     id: {
       primaryKey: true,
       type: DataTypes.NUMBER,
+      autoIncrement: true,
     },
     name: DataTypes.STRING,
     address: DataTypes.STRING,
     contact_number: DataTypes.STRING,
     admin_email: DataTypes.STRING,
-    age: DataTypes.STRING
+    age: {
+      type: DataTypes.STRING,
+      allowNull: true
+    }
   });
 };

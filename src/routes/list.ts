@@ -1,9 +1,9 @@
 "use strict";
 
-import { APIGatewayProxyHandler } from "aws-lambda";
+import { APIGatewayEventRequestContext, APIGatewayProxyEvent, APIGatewayProxyHandler } from "aws-lambda";
 
 let db = require('./config/db.js');
 
-export const list: APIGatewayProxyHandler = (event, context, callback) => {
+exports.list = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext, callback) => {
     
 };
