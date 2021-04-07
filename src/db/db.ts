@@ -8,11 +8,8 @@ const env = envConfig[db_mode];
 const sequelize = new Sequelize(env.database, env.username, env.password, {
     host: env.host,
     port: env.port,
-    logging: true, // Disable the logging. It is consuming the time on lambda function.
+    logging: false, // Disable the logging. It is consuming the time on lambda function.
     dialect: env.dialect as Dialect,
-    define: {
-        timestamps: false
-    },
     pool: {
         max: 5,
         min: 0,

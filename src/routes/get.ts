@@ -1,8 +1,32 @@
 "use strict";
-import { APIGatewayProxyHandler } from 'aws-lambda';
+import { APIGatewayProxyEvent, APIGatewayEventRequestContext } from 'aws-lambda';
+import { Client } from '../models';
 
-let db = require('./config/db');
+exports.getOne = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) => {
+    try {
+      if (!(event.pathParameters && event.pathParameters.id)) {
+        return {
+          statusCode: 400,
+          body: JSON.stringify({
+            message: 'Id param is missing'
+          })
+        };
+      }
 
-export const get: APIGatewayProxyHandler = (event, context, callback) => {
-
+      const client = await Client.findByPk(event.pathParameters.id);
+      return {
+        statusCode: 201,
+        body: JSON.stringify({
+          client
+        })
+      };
+    } catch (error) {
+      console.error('Clients list error:', error);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({
+          message: error.message
+        })
+      };
+    }
 };

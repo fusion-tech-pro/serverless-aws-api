@@ -16,13 +16,16 @@ exports.post = async function (event: APIGatewayProxyEvent, context: APIGatewayE
 
 
   const payload = JSON.parse(event.body);
+
+  payload.domain = payload.admin_email.split('@')[1];
+  
   try {
     await Client.create(payload);
-  
+
     return {
       statusCode: 201,
       body: JSON.stringify({
-        event
+        message: 'User created'
       })
     };
   } catch (error) {

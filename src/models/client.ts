@@ -9,8 +9,9 @@ type ClientAttributes = {
   id?: number;
   name: string;
   address: string;
-  contact_number: string;
-  admin_email: string;
+  contact_number?: string;
+  admin_email?: string;
+  domain: string;
   age?: string;
   createdAt?: Date;
   updatedAt?: Date;

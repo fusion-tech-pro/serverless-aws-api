@@ -24,7 +24,7 @@ functions:
           method: post
 
   list:
-    handler: src/routes/list.list
+    handler: build/routes/list.get
     events:
       - http:
           path: client
@@ -36,7 +36,7 @@ functions:
                 offset: false
 
   get:
-    handler: src/routes/get.get
+    handler: build/routes/get.getOne
     events:
       - http:
           path: client/{id}
@@ -47,7 +47,7 @@ functions:
                 id: true
 
   update:
-    handler: src/routes/update.update
+    handler: build/routes/update.update
     events:
       - http:
           path: client/{id}
@@ -58,7 +58,7 @@ functions:
                 id: true      
 
   delete:
-    handler: src/routes/delete.deleteClient
+    handler: build/routes/delete.deleteClient
     events:
       - http:
           path: client/{id}
