@@ -24,6 +24,11 @@ exports.post = async function (event: APIGatewayProxyEvent, context: APIGatewayE
 
     return {
       statusCode: 201,
+      headers: {
+        "Access-Control-Allow-Headers" : "Content-Type",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+    },
       body: JSON.stringify({
         message: 'User created'
       })
@@ -32,6 +37,11 @@ exports.post = async function (event: APIGatewayProxyEvent, context: APIGatewayE
     console.error('Client create error:', error);
     return {
       statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Headers" : "Content-Type",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+    },
       body: JSON.stringify({
         message: error.message
       })

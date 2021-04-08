@@ -7,7 +7,7 @@ package:
 provider:
   name: aws
   runtime: nodejs12.x
-  region: us-west-2
+  region: eu-central-1
   timeout: 20
   versionFunctions: false
   memorySize: 512
@@ -15,6 +15,12 @@ provider:
     NODE_ENV: development
 
 functions:
+  check:
+    handler: build/routes/preSignup.check
+    events:
+      - http:
+          path: auth
+          method: post
 
   post:
     handler: build/routes/create.post

@@ -24,6 +24,11 @@ exports.getOne = async (event: APIGatewayProxyEvent, context: APIGatewayEventReq
       console.error('Clients list error:', error);
       return {
         statusCode: 500,
+        headers: {
+          "Access-Control-Allow-Headers" : "Content-Type",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+      },
         body: JSON.stringify({
           message: error.message
         })

@@ -3,24 +3,21 @@
 import { APIGatewayEventRequestContext, APIGatewayProxyEvent, APIGatewayProxyHandler } from "aws-lambda";
 import { Client } from '../models';
 
-exports.get = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) => {
+exports.check = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) => {
     try {
-      const clients = await Client.findAll();
+    //   const clients = await Client.findOne()
+    console.log('Event sing up', event);
+    
       return {
         statusCode: 201,
         body: JSON.stringify({
-          clients
+          event
         })
       };
     } catch (error) {
-      console.error('Clients list error:', error);
+      console.error('PreSignUp error:', error);
       return {
         statusCode: 500,
-        headers: {
-          "Access-Control-Allow-Headers" : "Content-Type",
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-      },
         body: JSON.stringify({
           message: error.message
         })
