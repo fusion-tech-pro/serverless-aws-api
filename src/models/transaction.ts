@@ -20,7 +20,7 @@ type TransactionStatic = typeof Model & {
   new (values?: object, options?: BuildOptions): TransactionModel;
 }
 
-export const ClientFactory = function (sequelize: Sequelize): TransactionStatic {
+export const TransactionFactory = function (sequelize: Sequelize): TransactionStatic {
   return <TransactionStatic>sequelize.define('transaction', {
     id: {
       primaryKey: true,

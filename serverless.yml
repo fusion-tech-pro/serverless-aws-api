@@ -79,3 +79,19 @@ functions:
             parameters:
               paths:
                 id: true
+  
+  postTransaction:
+    handler: build/routes/transactions/create.post
+    events:
+      - http:
+          path: /transactions
+          method: post
+          cors: true
+
+  listTransactions:
+    handler: build/routes/transactions/list.get
+    events:
+      - http:
+          path: /transactions
+          method: get
+          cors: true
