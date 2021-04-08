@@ -11,6 +11,7 @@ type ClientAttributes = {
   address: string;
   contact_number?: string;
   admin_email?: string;
+  APIKey?: string;
   domain: string;
   age?: string;
   createdAt?: Date;
@@ -34,6 +35,7 @@ export const ClientFactory = function (sequelize: Sequelize): ClientStatic {
     address: DataTypes.STRING,
     contact_number: DataTypes.STRING,
     admin_email: DataTypes.STRING,
+    APIKey: DataTypes.STRING,
     domain: DataTypes.STRING,
     age: {
       type: DataTypes.STRING,
