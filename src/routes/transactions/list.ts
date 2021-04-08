@@ -11,14 +11,35 @@ exports.get = async (
   event: APIGatewayProxyEvent,
   context: APIGatewayEventRequestContext
 ) => {
-  return {
-    statusCode: 201,
-    body: JSON.stringify({
-      message: 'OK',
-    }),
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Credentials': true,
-    },
-  };
+  try {
+    const query = event.queryStringParameters || {};
+
+    const options = createFilter(query);
+
+    const data = await Transaction.findAndCountAll(options);
+    return {
+      statusCode: 201,
+      body: JSON.stringify({
+        data: data.rows,
+        total: data.count,
+        pages: Math.ceil(data.count / options.limit)
+      }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
+    };
+  } catch (error) {
+    console.error('Transaction list error:', error);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        message: error.message
+      }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
+    };
+  }
 };
