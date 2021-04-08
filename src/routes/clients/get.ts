@@ -1,6 +1,6 @@
 "use strict";
 import { APIGatewayProxyEvent, APIGatewayEventRequestContext } from 'aws-lambda';
-import { Client } from '../models';
+import { Client } from '../../models';
 
 exports.getOne = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) => {
     try {

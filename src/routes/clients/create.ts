@@ -3,7 +3,7 @@ import {
   APIGatewayEventRequestContext,
   APIGatewayProxyEvent,
 } from 'aws-lambda';
-import { Client } from '../models';
+import { Client } from '../../models';
 
 const postCtrl = async function (
   event: APIGatewayProxyEvent,
@@ -23,8 +23,6 @@ const postCtrl = async function (
   }
   try {
     const payload = JSON.parse(event.body);
-    payload.domain = payload.admin_email.split('@')[1];
-  
     const client = await Client.create(payload);
 
     return {
