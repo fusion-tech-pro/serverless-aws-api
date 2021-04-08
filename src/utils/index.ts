@@ -14,9 +14,10 @@ export const createFilter = (params: any) => {
   const sortType = params.sortType || 'DESC';
   options.order = [[orderBy, sortType]];
 
-
-  if (params.userAPIKey) {
-    options.where.APIkey = params.userAPIKey;
+  if (params.userAPIkey) {
+    options.where = {
+      APIkey: params.userAPIkey
+    }
   }
 
   return options;
