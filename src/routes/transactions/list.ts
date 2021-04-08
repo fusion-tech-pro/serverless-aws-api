@@ -14,7 +14,8 @@ exports.get = async (
   try {
     const query = event.queryStringParameters || {};
 
-    const options = createFilter(query);
+    const userAPIKey = event.headers["pledge-api-key"];
+    const options = createFilter({ ...query, userAPIKey });
 
     const data = await Transaction.findAndCountAll(options);
     return {

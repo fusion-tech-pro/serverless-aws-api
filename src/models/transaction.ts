@@ -9,15 +9,16 @@ type TransactionAttributes = {
   id?: number;
   referenceNumber: number,
   price: number,
+  APIkey: string,
   currency: string,
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-interface TransactionModel extends Model<TransactionAttributes>, TransactionAttributes {}
+interface TransactionModel extends Model<TransactionAttributes>, TransactionAttributes { }
 
 type TransactionStatic = typeof Model & {
-  new (values?: object, options?: BuildOptions): TransactionModel;
+  new(values?: object, options?: BuildOptions): TransactionModel;
 }
 
 export const TransactionFactory = function (sequelize: Sequelize): TransactionStatic {
@@ -29,6 +30,7 @@ export const TransactionFactory = function (sequelize: Sequelize): TransactionSt
     },
     referenceNumber: DataTypes.NUMBER,
     price: DataTypes.NUMBER,
-    currency: DataTypes.STRING
+    currency: DataTypes.STRING,
+    APIkey: DataTypes.STRING
   });
 };
