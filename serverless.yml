@@ -1,4 +1,4 @@
-service: rds-rest-api
+service: pledge-rest-api-cors
 
 package:
   exclude:
@@ -20,8 +20,10 @@ functions:
     handler: build/routes/create.post
     events:
       - http:
-          path: client
+          path: /client
           method: post
+          cors: true
+
 
   list:
     handler: build/routes/list.get
@@ -29,6 +31,8 @@ functions:
       - http:
           path: client
           method: get
+          cors: true
+
           request:
             parameters:
               querystrings:
@@ -47,11 +51,12 @@ functions:
                 id: true
 
   update:
-    handler: build/routes/update.update
+    handler: build/routes/update.put
     events:
       - http:
           path: client/{id}
           method: put
+          cors: true
           request:
             parameters:
               paths:
@@ -63,6 +68,7 @@ functions:
       - http:
           path: client/{id}
           method: delete
+          cors: true
           request:
             parameters:
               paths:

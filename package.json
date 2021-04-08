@@ -8,6 +8,7 @@
     "migrate": "sequelize db:migrate"
   },
   "dependencies": {
+    "middy": "^0.36.0",
     "pg": "^8.5.1",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0"

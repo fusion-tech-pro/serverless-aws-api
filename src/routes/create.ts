@@ -1,40 +1,57 @@
-"use strict";
-
-import { APIGatewayEventRequestContext, APIGatewayProxyCallback, APIGatewayProxyEvent, APIGatewayProxyHandler } from 'aws-lambda';
+'use strict';
+import {
+  APIGatewayEventRequestContext,
+  APIGatewayProxyEvent,
+} from 'aws-lambda';
 import { Client } from '../models';
 
-
-exports.post = async function (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) {
+const postCtrl = async function (
+  event: APIGatewayProxyEvent,
+  context: APIGatewayEventRequestContext
+) {
   if (!event.body) {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: 'Empty body'
-      })
-    }
+        message: 'Empty body',
+      }),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+    };
   }
-
-
-  const payload = JSON.parse(event.body);
-
-  payload.domain = payload.admin_email.split('@')[1];
-  
   try {
-    await Client.create(payload);
+    const payload = JSON.parse(event.body);
+    payload.domain = payload.admin_email.split('@')[1];
+  
+    const client = await Client.create(payload);
 
     return {
       statusCode: 201,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+      
       body: JSON.stringify({
-        message: 'User created'
-      })
+        message: 'User created',
+        client
+      }),
     };
   } catch (error) {
     console.error('Client create error:', error);
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: error.message
-      })
+        message: error.message,
+      }),
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
     };
   }
 };
+
+exports.post = postCtrl;

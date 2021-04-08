@@ -34,6 +34,7 @@ export const ClientFactory = function (sequelize: Sequelize): ClientStatic {
     address: DataTypes.STRING,
     contact_number: DataTypes.STRING,
     admin_email: DataTypes.STRING,
+    domain: DataTypes.STRING,
     age: {
       type: DataTypes.STRING,
       allowNull: true
