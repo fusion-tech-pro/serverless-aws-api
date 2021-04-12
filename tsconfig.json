@@ -6,6 +6,5 @@
     "outDir": "./build",
     "rootDir": "./src",
     "resolveJsonModule": true
-  },
-  "include": ["src/**/*.ts", "src/**/*.js", "src/models/client.ts"]
+  }
 }
