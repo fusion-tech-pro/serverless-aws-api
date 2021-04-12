@@ -9,10 +9,8 @@ type TransactionAttributes = {
   id?: number;
   referenceNumber: number,
   price: number,
-  APIkey: string,
+  clientId: number,
   currency: string,
-  createdAt?: Date;
-  updatedAt?: Date;
 }
 
 interface TransactionModel extends Model<TransactionAttributes>, TransactionAttributes { }
@@ -31,6 +29,14 @@ export const TransactionFactory = function (sequelize: Sequelize): TransactionSt
     referenceNumber: DataTypes.NUMBER,
     price: DataTypes.NUMBER,
     currency: DataTypes.STRING,
-    APIkey: DataTypes.STRING
+    clientId: DataTypes.NUMBER,
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW
+    }
   });
 };

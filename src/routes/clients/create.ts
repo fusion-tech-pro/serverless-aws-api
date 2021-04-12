@@ -4,7 +4,7 @@ import {
   APIGatewayProxyEvent,
 } from 'aws-lambda';
 import { Client } from '../../models';
-import crypto  from 'crypto';
+import crypto from 'crypto';
 
 const postCtrl = async function (
   event: APIGatewayProxyEvent,
@@ -24,7 +24,7 @@ const postCtrl = async function (
   }
   try {
     const payload = JSON.parse(event.body);
-    payload.APIKey = crypto.randomBytes(16).toString("hex");
+    payload.APIkey = crypto.randomBytes(16).toString("hex");
 
     const client = await Client.create(payload);
 
@@ -34,7 +34,7 @@ const postCtrl = async function (
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Credentials": true,
       },
-      
+
       body: JSON.stringify({
         message: 'User created',
         client

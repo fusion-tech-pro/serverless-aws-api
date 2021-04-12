@@ -4,5 +4,15 @@ import db from "../db/db";
 import { ClientFactory } from "./client";
 import { TransactionFactory } from "./transaction";
 
-export const Client = ClientFactory(db.sequelize);
-export const Transaction = TransactionFactory(db.sequelize);
+const Client = ClientFactory(db.sequelize);
+const Transaction = TransactionFactory(db.sequelize);
+
+Client.hasMany(Transaction, {
+  foreignKey: 'clientId',
+});
+Transaction.belongsTo(Client);
+
+export {
+  Client,
+  Transaction
+}

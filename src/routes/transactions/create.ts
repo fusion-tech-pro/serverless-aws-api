@@ -40,7 +40,7 @@ exports.post = async function (
   } catch (error) {
     console.error('Transaction create error:', error);
     return {
-      statusCode: 201,
+      statusCode: 501,
       body: JSON.stringify({
         message: error.message,
       }),
