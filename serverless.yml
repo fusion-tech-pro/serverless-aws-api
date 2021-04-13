@@ -92,6 +92,18 @@ functions:
     handler: build/routes/transactions/list.get
     events:
       - http:
-          path: /transactions
+          path: /transactions/query
           method: get
           cors: true
+
+  sumTransactions:
+    handler: build/routes/transactions/summary.get
+    events:
+      - http:
+          path: /transactions
+          cors: true
+          method: get
+          request:
+            parameters:
+              paths:
+                date: true
