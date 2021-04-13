@@ -2,7 +2,7 @@
 
 import { APIGatewayEventRequestContext, APIGatewayProxyEvent, APIGatewayProxyHandler } from "aws-lambda";
 import { Client } from '../../models';
-import { createFilter } from '../../utils';
+import { createFilter } from '../../utils/createFilter';
 
 exports.get = async (event: APIGatewayProxyEvent, context: APIGatewayEventRequestContext) => {
     try {

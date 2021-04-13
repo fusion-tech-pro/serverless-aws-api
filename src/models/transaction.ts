@@ -6,7 +6,7 @@ import {
 } from 'sequelize';
 
 type TransactionAttributes = {
-  id?: number;
+  id: number;
   referenceNumber: number,
   price: number,
   clientId: number,

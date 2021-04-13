@@ -6,7 +6,7 @@ import {
 } from 'sequelize';
 
 type ClientAttributes = {
-  id?: number;
+  id: number;
   name: string;
   address: string;
   admin_email?: string;

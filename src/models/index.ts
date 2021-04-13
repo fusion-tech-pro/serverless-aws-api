@@ -1,5 +1,3 @@
-import * as sequelize from "sequelize";
-
 import db from "../db/db";
 import { ClientFactory } from "./client";
 import { TransactionFactory } from "./transaction";

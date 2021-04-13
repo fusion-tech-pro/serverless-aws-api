@@ -4,8 +4,9 @@ import {
   APIGatewayEventRequestContext,
   APIGatewayProxyEvent,
 } from 'aws-lambda';
+
 import { Transaction } from '../../models';
-import { createFilter } from '../../utils';
+import { createFilter } from '../../utils/createFilter';
 import { verifyUser } from '../../utils/verifyUser';
 
 exports.get = async (
@@ -16,10 +17,9 @@ exports.get = async (
     const query = event.queryStringParameters || {};
     const clientAPIkey = event.headers["pledge-api-key"];
 
-    // Verify user's id and APIkey, if not throw Error
-    await verifyUser(query.clientId, clientAPIkey);
+    const user = await verifyUser(clientAPIkey);
 
-    const options = createFilter({ ...query, clientAPIkey });
+    const options = createFilter({ ...query, clientId: user.id });
 
     const data = await Transaction.findAndCountAll(options);
     return {
