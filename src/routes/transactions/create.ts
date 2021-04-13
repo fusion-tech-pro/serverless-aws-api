@@ -3,7 +3,8 @@ import {
   APIGatewayEventRequestContext,
   APIGatewayProxyEvent,
 } from 'aws-lambda';
-import { Transaction } from '../../models';
+
+import { Client, Transaction } from '../../models';
 
 exports.post = async function (
   event: APIGatewayProxyEvent,
@@ -23,8 +24,16 @@ exports.post = async function (
   }
 
   try {
+    const clientAPIkey = event.headers["pledge-api-key"];
+
+    const client = await Client.findOne({
+      where: {
+        APIkey: clientAPIkey
+      }
+    });
+
     const payload = JSON.parse(event.body);
-    const transaction = await Transaction.create(payload);
+    const transaction = await Transaction.create({ ...payload, clientId: client?.id });
 
     return {
       statusCode: 201,

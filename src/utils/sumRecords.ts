@@ -10,7 +10,7 @@ type ModelStatic = typeof Model & {
 type sumParams = {
   model: ModelStatic;
   identifyField: string;
-  identifyValue: string | number;
+  identifyValue: string | number | undefined;
   sumField: string;
   date?: string;
 }

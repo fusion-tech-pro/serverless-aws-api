@@ -5,10 +5,9 @@ import {
   APIGatewayProxyEvent,
 } from 'aws-lambda';
 
-import { Transaction } from '../../models/'
+import { Client, Transaction } from '../../models/'
 
 import { sumRecords } from '../../utils/sumRecords';
-import { verifyUser } from '../../utils/verifyUser';
 
 exports.get = async (
   event: APIGatewayProxyEvent,
@@ -18,12 +17,16 @@ exports.get = async (
     const query = event.queryStringParameters || {};
     const clientAPIkey = event.headers["pledge-api-key"];
 
-    const user = await verifyUser(clientAPIkey);
-    console.log("query >> ", query)
+    const client = await Client.findOne({
+      where: {
+        APIkey: clientAPIkey
+      }
+    });
+
     const summary = await sumRecords({
       model: Transaction,
       identifyField: "clientId",
-      identifyValue: user.id,
+      identifyValue: client?.id,
       sumField: "price",
       date: query.date
     });
