@@ -5,7 +5,8 @@
   "scripts": {
     "build": "node_modules/typescript/bin/tsc",
     "deploy": "npm run build && serverless deploy -v",
-    "migrate": "sequelize db:migrate"
+    "migrate": "sequelize db:migrate",
+    "df": "npm run build && serverless deploy -f"
   },
   "dependencies": {
     "middy": "^0.36.0",
