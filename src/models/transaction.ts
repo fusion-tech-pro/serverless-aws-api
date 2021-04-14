@@ -37,6 +37,10 @@ export const TransactionFactory = function (sequelize: Sequelize): TransactionSt
     updatedAt: {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
+    },
+    createdAtString: {
+      type: DataTypes.STRING,
+      defaultValue: new Date().toISOString().substring(0,10),
     }
   });
 };
