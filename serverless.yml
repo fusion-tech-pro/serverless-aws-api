@@ -108,7 +108,7 @@ functions:
     handler: build/routes/transactions/create.post
     events:
       - http:
-          path: /transactions
+          path: /transaction
           method: post
           cors:
             origin: "*"
@@ -158,3 +158,20 @@ functions:
             parameters:
               paths:
                 date: true
+
+  getTransaction:
+    handler: build/routes/transactions/get.getOne
+    events:
+      - http:
+          path: /transaction
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - pledge-api-key
+          method: get
