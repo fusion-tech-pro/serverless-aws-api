@@ -28,7 +28,16 @@ functions:
       - http:
           path: /client
           method: post
-          cors: true
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - pledge-api-key
 
 
   list:
@@ -37,24 +46,21 @@ functions:
       - http:
           path: client
           method: get
-          cors: true
-
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - pledge-api-key
           request:
             parameters:
               querystrings:
                 limit: false
                 offset: false
-
-  get:
-    handler: build/routes/clients/get.getOne
-    events:
-      - http:
-          path: client/{id}
-          method: get
-          request:
-            parameters:
-              paths:
-                id: true
 
   update:
     handler: build/routes/clients/update.put
@@ -62,11 +68,20 @@ functions:
       - http:
           path: client/{id}
           method: put
-          cors: true
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - pledge-api-key
           request:
             parameters:
               paths:
-                id: true      
+                id: true
 
   delete:
     handler: build/routes/clients/delete.deleteClient
@@ -74,7 +89,16 @@ functions:
       - http:
           path: client/{id}
           method: delete
-          cors: true
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - pledge-api-key
           request:
             parameters:
               paths:
@@ -86,7 +110,16 @@ functions:
       - http:
           path: /transactions
           method: post
-          cors: true
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - pledge-api-key
 
   listTransactions:
     handler: build/routes/transactions/list.get
@@ -94,14 +127,32 @@ functions:
       - http:
           path: /transactions/query
           method: get
-          cors: true
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - pledge-api-key
 
   sumTransactions:
     handler: build/routes/transactions/summary.get
     events:
       - http:
           path: /transactions
-          cors: true
+          cors:
+            origin: "*"
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+              - pledge-api-key
           method: get
           request:
             parameters:
