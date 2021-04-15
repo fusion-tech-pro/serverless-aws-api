@@ -24,7 +24,7 @@ exports.post = async function (
   }
 
   try {
-    const clientAPIkey = event.headers["pledge-api-key"];
+    const clientAPIkey = event.headers["serverless-api-key"];
 
     const client = await Client.findOne({
       where: {

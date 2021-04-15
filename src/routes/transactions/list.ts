@@ -14,7 +14,7 @@ exports.get = async (
 ) => {
   try {
     const query = event.queryStringParameters || {};
-    const clientAPIkey = event.headers["pledge-api-key"];
+    const clientAPIkey = event.headers["serverless-api-key"];
 
     const client = await Client.findOne({
       where: {
