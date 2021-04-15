@@ -6,7 +6,7 @@ Just install dependencies by:
 ```bash
 npm i
 ```
-Just install cli dependencies by:
+Install cli dependencies by:
 ```bash
 npm i -g serverless & npm i -g sequelize-cli
 ```
@@ -14,17 +14,17 @@ npm i -g serverless & npm i -g sequelize-cli
 ## Development & Deployment
 1) Upload All Lambda functions on AWS by:
 ```bash
-npm deploy
+npm run deploy
 ```
 2) Build js from typescript by:
 ```bash
-npm build
+npm run build
 ```
 3) Initialize database models by:
 ```bash
-npm migrate
+npm run migrate
 ```
 4) Upload exact Lambda function on AWS by:
 ```bash
-npm df <function_name_from_serverless_yml>
+npm run df <function_name_from_serverless_yml>
 ```
