@@ -6,7 +6,7 @@ import {
 import { Client } from '../../models';
 import crypto from 'crypto';
 
-const postCtrl = async function (
+exports.post = async function (
   event: APIGatewayProxyEvent,
   context: APIGatewayEventRequestContext
 ) {
@@ -54,5 +54,3 @@ const postCtrl = async function (
     };
   }
 };
-
-exports.post = postCtrl;

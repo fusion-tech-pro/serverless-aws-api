@@ -14,6 +14,7 @@ module.exports = {
       currency: Sequelize.STRING,
       createdAt: Sequelize.DATE,
       updatedAt: Sequelize.DATE,
+      createdAtString: Sequelize.STRING
     });
   },
 
